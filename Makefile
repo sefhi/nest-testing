@@ -1,4 +1,4 @@
-PHONY: build start stop restart bash logs clean install
+.PHONY: build start stop restart bash logs clean install test test-e2e test-watch test-cov
 
 # Variables
 DOCKER_COMPOSE = docker compose
@@ -24,6 +24,19 @@ logs:
 install:
 	$(DOCKER_COMPOSE) exec app npm install
 
+test:
+	$(DOCKER_COMPOSE) exec app npm test
+	make test-e2e
+
+test-e2e:
+	$(DOCKER_COMPOSE) exec app npm run test:e2e
+
+test-watch:
+	$(DOCKER_COMPOSE) exec app npm run test:watch
+
+test-cov:
+	$(DOCKER_COMPOSE) exec app npm run test:cov
+
 help:
 	@echo "Comandos disponibles:"
 	@echo "  make build     - Construir imagen"
@@ -34,3 +47,5 @@ help:
 	@echo "  make logs      - Ver logs"
 	@echo "  make clean     - Limpiar recursos"
 	@echo "  make install   - Instalar dependencias"
+	@echo "  make test      - Ejecutar pruebas"
+	@echo "  make test-e2e  - Ejecutar pruebas E2E"
