@@ -1,4 +1,4 @@
-.PHONY: build start stop restart shell logs clean install
+PHONY: build start stop restart bash logs clean install
 
 # Variables
 DOCKER_COMPOSE = docker compose
