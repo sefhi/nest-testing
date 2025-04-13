@@ -1,4 +1,4 @@
-import { User} from '../../../../../src/Users/Domain/Entities/User';
+import { User } from '../../../../../src/Users/Domain/Entities/User';
 
 type UserParams = {
   id?: string;
