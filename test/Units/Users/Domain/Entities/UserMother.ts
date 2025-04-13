@@ -1,4 +1,5 @@
 import { User } from '../../../../../src/Users/Domain/Entities/User';
+import { CreateUserCommand } from '../../../../../src/Users/Application/Commands/CreateUser/CreateUserCommand';
 
 type UserParams = {
   id?: string;
@@ -17,5 +18,13 @@ export class UserMother {
     const finalData = { ...randomData, ...overrides };
 
     return User.create(finalData.id, finalData.email, finalData.name);
+  }
+
+  static fromCommand(command: CreateUserCommand): User {
+    return this.random({
+      id: command.id,
+      email: command.email,
+      name: command.name,
+    } as UserParams);
   }
 }
