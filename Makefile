@@ -1,4 +1,4 @@
-.PHONY: build start stop restart bash logs clean install test test-e2e test-watch test-cov
+.PHONY: build start stop restart bash logs clean install test test-e2e test-cov
 
 # Variables
 DOCKER_COMPOSE = docker compose
@@ -30,9 +30,6 @@ test:
 
 test-e2e:
 	$(DOCKER_COMPOSE) exec app npm run test:e2e
-
-test-watch:
-	$(DOCKER_COMPOSE) exec app npm run test:watch
 
 test-cov:
 	$(DOCKER_COMPOSE) exec app npm run test:cov
