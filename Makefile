@@ -24,9 +24,9 @@ logs:
 install:
 	$(DOCKER_COMPOSE) exec app npm install
 
+test/all: test test-e2e
 test:
 	$(DOCKER_COMPOSE) exec app npm test
-	make test-e2e
 
 test-e2e:
 	$(DOCKER_COMPOSE) exec app npm run test:e2e

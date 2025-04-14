@@ -17,8 +17,15 @@ describe('Create User Controller (e2e)', () => {
   });
 
   it('should create user api/v1/users POST', () => {
+    const payload = {
+      id: '123e4567-e89b-12d3-a456-426614174000',
+      email: 'test@example.com',
+      name: 'John Doe',
+    };
+
     return request(app.getHttpServer())
       .post('/api/v1/users')
+      .send(payload)
       .expect(HttpStatus.CREATED);
   });
 });
