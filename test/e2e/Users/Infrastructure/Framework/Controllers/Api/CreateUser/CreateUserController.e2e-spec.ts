@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpStatus, INestApplication } from '@nestjs/common';
+import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { AppModule } from '../../../../../../../../src/Shared/Infrastruture/Framework/Controllers/Config/app.module';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
@@ -13,10 +13,17 @@ describe('Create User Controller (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(
+      new ValidationPipe({
+        transform: true,
+        whitelist: true,
+        forbidNonWhitelisted: true,
+      }),
+    );
     await app.init();
   });
 
-  it('should create user api/v1/users POST', () => {
+  it('should create user with http status 201', () => {
     const payload = {
       id: '123e4567-e89b-12d3-a456-426614174000',
       email: 'test@example.com',
@@ -27,5 +34,21 @@ describe('Create User Controller (e2e)', () => {
       .post('/api/v1/users')
       .send(payload)
       .expect(HttpStatus.CREATED);
+  });
+
+  it('should return an error with http status 400', () => {
+    const payload = {
+      id: '123e4567-e89b-12d3-a456-426614174000',
+      email: 'testexample.com',
+      name: 'John Doe',
+    };
+
+    return request(app.getHttpServer())
+      .post('/api/v1/users')
+      .send(payload)
+      .expect(HttpStatus.BAD_REQUEST)
+      .expect((res) => {
+        expect(res.body.message).toEqual(['invalid email format']);
+      });
   });
 });
