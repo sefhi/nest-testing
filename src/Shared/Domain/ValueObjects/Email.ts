@@ -10,4 +10,8 @@ export class Email {
 
     return true;
   }
+
+  equals(other: Email): boolean {
+    return this.value === other.value;
+  }
 }

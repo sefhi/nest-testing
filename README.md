@@ -96,3 +96,11 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+
+
+Cositas: 
+
+
+Notas:
+- No he podido usar UserRepository como interfaz, porque Typescript no es capaz en tiempo de compilación de averiguar sus implementaciones. Por lo que he tenido que pasarlo a una clase abstracta, y evitar el uso de Injetable() recomendado por el framework, cosa que quiero evitar por todos los medios.
