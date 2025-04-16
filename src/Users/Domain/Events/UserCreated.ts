@@ -27,4 +27,19 @@ export class UserCreated extends DomainEvent {
       email: this.email,
     };
   }
+
+  static fromPrimitives(
+    relatedId: string,
+    attributes: CreateUserDomainEventAttributes,
+    eventId: string,
+    occurredOn: Date,
+  ) {
+    return new UserCreated(
+      relatedId,
+      name: attributes.name,
+      email: attributes.email,
+      eventId,
+      occurredOn
+    );
+  }
 }
