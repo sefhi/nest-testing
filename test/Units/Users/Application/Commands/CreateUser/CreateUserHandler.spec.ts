@@ -22,6 +22,13 @@ describe('CreateUserHandler', () => {
 
     // THEN
     expect(handler).toBeDefined();
-    expect(storeSpy).toHaveBeenCalledWith(userExpected);
+
+    const storedUser = storeSpy.mock.calls[0][0];
+    expect(storedUser).toMatchObject({
+      id: { value: userExpected.id.value },
+      email: { value: userExpected.email.value },
+      name: { value: userExpected.name.value }
+    });
+
   });
 });

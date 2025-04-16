@@ -2,6 +2,7 @@ import { Email } from '../../../Shared/Domain/ValueObjects/Email';
 import { UserName } from '../ValueObjects/UserName';
 import { UserId } from '../ValueObjects/UserId';
 import { BaseEntity } from '../../../Shared/Domain/Entities/BaseEntity';
+import { UserCreated } from '../Events/UserCreated';
 
 export class User extends BaseEntity {
   protected constructor(
@@ -13,7 +14,12 @@ export class User extends BaseEntity {
   }
 
   static create(id: string, email: string, name: string): User {
-    return new User(new UserId(id), new Email(email), new UserName(name));
+    const userId = new UserId(id);
+    const userEmail = new Email(email);
+    const userName = new UserName(name);
+    const user = new User(userId, userEmail, userName);
+    user.record(new UserCreated(userId.value, userName.value, userEmail.value));
+    return user;
   }
 
   get id(): UserId {

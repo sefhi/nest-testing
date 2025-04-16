@@ -14,9 +14,10 @@ export class UserCreated extends DomainEvent {
     relatedId: string,
     name: string,
     email: string,
+    eventId?: string,
     occurredOn?: Date,
   ) {
-    super(relatedId, occurredOn);
+    super(relatedId, eventId, occurredOn);
     this.name = name;
     this.email = email;
   }
