@@ -4,6 +4,8 @@ services:
     build:
       context: .
       target: development
+    env_file:
+      - .env
     volumes:
       - .:/usr/src/app
     ports:
@@ -29,6 +31,8 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5433:5432"
+    networks:
+      - app-network
 
 networks:
   app-network:

@@ -7,7 +7,7 @@ import { USER_REPOSITORY } from '../../../Domain/Repositories/UserRepository';
 export class CreateUserHandler {
   constructor(
     @Inject(USER_REPOSITORY)
-    private readonly repository: UserRepository
+    private readonly repository: UserRepository,
   ) {}
 
   async handle(command: CreateUserCommand) {

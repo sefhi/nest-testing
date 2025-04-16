@@ -1,4 +1,4 @@
-import { validate as uuidValidate } from 'uuid';
+import { v7 as uuidv7, validate as uuidValidate } from 'uuid';
 
 export class Uuid {
   constructor(public readonly value: string) {
@@ -9,5 +9,13 @@ export class Uuid {
     if (!uuidValidate(id)) {
       throw new Error(`Invalid Uuid: ${id}`);
     }
+  }
+
+  toString(): string {
+    return this.value;
+  }
+
+  static generate(): Uuid {
+    return new Uuid(uuidv7());
   }
 }

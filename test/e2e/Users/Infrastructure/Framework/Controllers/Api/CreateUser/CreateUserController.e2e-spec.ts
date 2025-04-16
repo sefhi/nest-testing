@@ -3,6 +3,7 @@ import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { AppModule } from '../../../../../../../../src/Shared/Infrastruture/Framework/Controllers/Config/app.module';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
+import { Uuid } from '../../../../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
 describe('Create User Controller (e2e)', () => {
   let app: INestApplication<App>;
@@ -25,7 +26,7 @@ describe('Create User Controller (e2e)', () => {
 
   it('should create user with http status 201', () => {
     const payload = {
-      id: '123e4567-e89b-12d3-a456-426614174000',
+      id: Uuid.generate().toString(),
       email: 'test@example.com',
       name: 'John Doe',
     };
