@@ -1,6 +1,6 @@
-import { DomainEvent } from '../Events/DomainEvent';
+import { DomainEvent, DomainEventClass } from '../Events/DomainEvent';
 
 export interface EventHandler {
   subscribedTo(): Array<DomainEventClass>;
-  handler(event: DomainEvent): Promise<void>;
+  handle(event: DomainEvent): Promise<void>;
 }

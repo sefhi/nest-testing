@@ -1,5 +1,4 @@
 import { CreateUserCommand } from '../../../../../../src/Users/Application/Commands/CreateUser/CreateUserCommand';
-import { v7 } from 'uuid';
 import { Uuid } from '../../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
 type CommandParams = {

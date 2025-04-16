@@ -10,6 +10,7 @@ export class UserCreated extends DomainEvent {
 
   readonly name: string;
   readonly email: string;
+
   constructor(
     relatedId: string,
     name: string,
@@ -30,16 +31,16 @@ export class UserCreated extends DomainEvent {
 
   static fromPrimitives(
     relatedId: string,
-    attributes: CreateUserDomainEventAttributes,
     eventId: string,
     occurredOn: Date,
+    attributes: CreateUserDomainEventAttributes,
   ) {
     return new UserCreated(
       relatedId,
-      name: attributes.name,
-      email: attributes.email,
+      attributes.name,
+      attributes.email,
       eventId,
-      occurredOn
+      occurredOn,
     );
   }
 }
