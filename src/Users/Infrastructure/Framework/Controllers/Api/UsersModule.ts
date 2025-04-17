@@ -4,9 +4,6 @@ import { CreateUserHandler } from '../../../../Application/Commands/CreateUser/C
 import { USER_REPOSITORY } from '../../../../Domain/Repositories/UserRepository';
 import { PostgresUserRepository } from '../../../Persistence/Repositories/PostgresUserRepository';
 import { Pool } from 'pg';
-import { EVENT_BUS } from '../../../../../Shared/Domain/Buses/EventBus';
-import { InMemoryUserRepository } from '../../../Persistence/Repositories/InMemoryUserRepository';
-import { InMemoryEventBus } from '../../../../../Shared/Infrastruture/Buses/InMemoryEventBus';
 import { EventHandlersModule } from '../../../../../Shared/Infrastruture/Framework/Config/Events/EventHandlersModule';
 
 @Module({

@@ -33,6 +33,6 @@ export class UserCreatedMother {
 
   static fromDomain(user: User): UserCreated {
     const [firstEvent] = user.pullDomainEvents();
-    return firstEvent;
+    return <UserCreated>firstEvent;
   }
 }

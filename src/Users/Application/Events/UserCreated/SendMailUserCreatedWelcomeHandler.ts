@@ -4,12 +4,22 @@ import {
   DomainEventClass,
 } from '../../../../Shared/Domain/Events/DomainEvent';
 import { UserCreated } from '../../../Domain/Events/UserCreated';
+import { EMAIL_SENDER, EmailSender } from '../../../../Shared/Domain/Emails/EmailSender';
+import { Inject } from '@nestjs/common';
 
 export class SendMailUserCreatedWelcomeHandler implements EventHandler {
-  handle(event: DomainEvent): Promise<void> {
+  constructor(
+    @Inject(EMAIL_SENDER)
+    private readonly emailSender: EmailSender
+  ) {}
+
+  async handle(event: DomainEvent): Promise<void> {
     const userCreatedEvent = event as UserCreated;
-    console.log(
-      `Usuario creado: ${userCreatedEvent.name} (${userCreatedEvent.email})`,
+
+    await this.emailSender.send(
+      userCreatedEvent.email,
+      'Welcome to Leadtech',
+      `Hello ${userCreatedEvent.name}, thanks for registering on our site.<br>Regards, Leadtech Team`,
     );
 
     return Promise.resolve(undefined);
