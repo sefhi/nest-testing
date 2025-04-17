@@ -1,6 +1,7 @@
 import { User } from '../../../../../src/Users/Domain/Entities/User';
 import { CreateUserCommand } from '../../../../../src/Users/Application/Commands/CreateUser/CreateUserCommand';
 import { v7 as uuidv7 } from 'uuid';
+import { Uuid } from '../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
 type UserParams = {
   id?: string;
@@ -11,7 +12,7 @@ type UserParams = {
 export class UserMother {
   static random(overrides: UserParams = {}): User {
     const randomData = {
-      id: uuidv7(),
+      id: Uuid.generate().toString(),
       email: 'example@example.com',
       name: 'John Doe',
     };

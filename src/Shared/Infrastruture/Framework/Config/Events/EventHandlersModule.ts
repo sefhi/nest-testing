@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { EVENT_BUS } from '../../../../Domain/Buses/EventBus';
 import { InMemoryEventBus } from '../../../Buses/InMemoryEventBus';
-import { SendMailUserRegisteredWelcomeHandler } from '../../../../../Users/Application/Events/SendMailUserRegisteredWelcomeHandler';
+import { SendMailUserCreatedWelcomeHandler } from '../../../../../Users/Application/Events/UserCreated/SendMailUserCreatedWelcomeHandler';
 
 const eventHandlers = [
-  SendMailUserRegisteredWelcomeHandler,
+  SendMailUserCreatedWelcomeHandler,
   //Add more handlers here ...
 ];
 

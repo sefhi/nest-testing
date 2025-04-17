@@ -1,11 +1,11 @@
-import { EventHandler } from '../../../Shared/Domain/Buses/EventHandler';
+import { EventHandler } from '../../../../Shared/Domain/Buses/EventHandler';
 import {
   DomainEvent,
   DomainEventClass,
-} from '../../../Shared/Domain/Events/DomainEvent';
-import { UserCreated } from '../../Domain/Events/UserCreated';
+} from '../../../../Shared/Domain/Events/DomainEvent';
+import { UserCreated } from '../../../Domain/Events/UserCreated';
 
-export class SendMailUserRegisteredWelcomeHandler implements EventHandler {
+export class SendMailUserCreatedWelcomeHandler implements EventHandler {
   handle(event: DomainEvent): Promise<void> {
     const userCreatedEvent = event as UserCreated;
     console.log(

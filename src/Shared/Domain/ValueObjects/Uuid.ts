@@ -5,10 +5,14 @@ export class Uuid {
     this.ensureIsValidId(value);
   }
 
-  ensureIsValidId(id: string): void {
-    if (!uuidValidate(id)) {
+  private ensureIsValidId(id: string): void {
+    if (!this.validate(id)) {
       throw new Error(`Invalid Uuid: ${id}`);
     }
+  }
+
+  validate(id: string): boolean {
+    return uuidValidate(id);
   }
 
   toString(): string {
