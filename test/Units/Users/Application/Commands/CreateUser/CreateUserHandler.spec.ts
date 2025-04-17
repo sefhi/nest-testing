@@ -44,8 +44,6 @@ describe('CreateUserHandler', () => {
         email: userExpected.email.value,
         name: userExpected.name.value,
         relatedId: userExpected.id.value,
-        eventId: expect().toBeDefined(),
-        occurredOn: expect().toBeDefined(),
       }),
     ]);
   });

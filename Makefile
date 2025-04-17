@@ -1,4 +1,4 @@
-.PHONY: build start stop restart bash logs clean install test test-e2e test-cov
+.PHONY: build start stop restart bash logs clean install test test-e2e test-cov style
 
 # Variables
 DOCKER_COMPOSE = docker compose
@@ -45,7 +45,7 @@ help:
 	@echo "  make restart   - Reiniciar contenedores"
 	@echo "  make shell     - Acceder al shell"
 	@echo "  make logs      - Ver logs"
-	@echo "  make clean     - Limpiar recursos"
 	@echo "  make install   - Instalar dependencias"
 	@echo "  make test      - Ejecutar pruebas"
 	@echo "  make test-e2e  - Ejecutar pruebas E2E"
+    @echo "  make style     - Ejecutar el linter"
