@@ -5,6 +5,7 @@ import { Inject } from '@nestjs/common';
 import { USER_REPOSITORY } from '../../../Domain/Repositories/UserRepository';
 import { EVENT_BUS, EventBus } from '../../../../Shared/Domain/Buses/EventBus';
 import { Email } from '../../../../Shared/Domain/ValueObjects/Email';
+import { UserEmailAlreadyExistsException } from '../../../Domain/Exceptions/UserEmailAlreadyExistsException';
 
 export class CreateUserHandler {
   constructor(
@@ -27,7 +28,7 @@ export class CreateUserHandler {
   private async ensureUserByEmailNotExist(email: Email) {
     const user = await this.repository.findByEmail(email.toString());
     if (user !== null) {
-      throw new Error(`User with email ${email.toString()} already exists`);
+      throw new UserEmailAlreadyExistsException(email.toString());
     }
   }
 }

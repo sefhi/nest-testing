@@ -48,4 +48,4 @@ help:
 	@echo "  make install   - Instalar dependencias"
 	@echo "  make test      - Ejecutar pruebas"
 	@echo "  make test-e2e  - Ejecutar pruebas E2E"
-    @echo "  make style     - Ejecutar el linter"
+	@echo "  make style     - Ejecutar el linter"
