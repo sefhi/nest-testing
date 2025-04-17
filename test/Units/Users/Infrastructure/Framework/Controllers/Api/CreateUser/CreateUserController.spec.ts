@@ -68,7 +68,7 @@ describe('CreateUserController', () => {
   it('should throw other exceptions', async () => {
     // GIVEN
     const dto: CreateUserDto = {
-      id: Uuid.generate().toString(,
+      id: Uuid.generate().toString(),
       email: 'test@example.com',
       name: 'Test User',
     };
