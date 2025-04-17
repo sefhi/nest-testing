@@ -4,7 +4,6 @@ import { CreateUserHandler } from '../../../../../../../../src/Users/Application
 import { CreateUserDto } from '../../../../../../../../src/Users/Infrastructure/Framework/Controllers/Api/CreateUser/CreateUserDto';
 import { UserEmailAlreadyExistsException } from '../../../../../../../../src/Users/Domain/Exceptions/UserEmailAlreadyExistsException';
 import { ConflictException } from '@nestjs/common';
-import { CreateUserCommand } from '../../../../../../../../src/Users/Application/Commands/CreateUser/CreateUserCommand';
 import { Uuid } from '../../../../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
 describe('CreateUserController', () => {
@@ -35,13 +34,15 @@ describe('CreateUserController', () => {
       email: 'test@example.com',
       name: 'Test User',
     };
-    jest.spyOn(handler, 'handle').mockResolvedValue(undefined);
+    const handleSpy = jest
+      .spyOn(handler, 'handle')
+      .mockResolvedValue(undefined);
 
     // WHEN
     await controller.register(dto);
 
     // THEN
-    expect(handler.handle).toHaveBeenCalledWith(
+    expect(handleSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         id: dto.id,
         email: dto.email,
