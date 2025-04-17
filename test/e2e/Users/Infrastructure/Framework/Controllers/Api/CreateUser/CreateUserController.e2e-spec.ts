@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
-import { AppModule } from '../../../../../../../../src/Shared/Infrastruture/Framework/Controllers/Config/app.module';
+import { AppModule } from '../../../../../../../../src/Shared/Infrastructure/Framework/Controllers/Config/app.module';
 import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { Uuid } from '../../../../../../../../src/Shared/Domain/ValueObjects/Uuid';

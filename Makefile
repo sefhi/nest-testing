@@ -1,4 +1,4 @@
-.PHONY: build start stop restart bash logs clean install test test-e2e test-cov style
+.PHONY: build start stop restart bash logs install test test-all test-e2e test-cov style
 
 # Variables
 DOCKER_COMPOSE = docker compose
@@ -24,7 +24,7 @@ logs:
 install:
 	$(DOCKER_COMPOSE) exec app npm install
 
-test/all: test test-e2e
+test-all: test test-e2e
 test:
 	$(DOCKER_COMPOSE) exec app npm test
 
@@ -43,7 +43,7 @@ help:
 	@echo "  make start     - Levantar contenedores"
 	@echo "  make stop      - Detener contenedores"
 	@echo "  make restart   - Reiniciar contenedores"
-	@echo "  make shell     - Acceder al shell"
+	@echo "  make bash      - Acceder a la terminal del contenedor"
 	@echo "  make logs      - Ver logs"
 	@echo "  make install   - Instalar dependencias"
 	@echo "  make test      - Ejecutar pruebas"

@@ -1,106 +1,189 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ⚙️ Configuración del entorno
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+1. Clona el repositorio o haz un fork
+2. Escribe por terminal el comando `make start`. Este comando instalará todo lo necesario para arrancar la aplicación.
+3. La api está disponible en la url http://localhost:3000
+4. Si quieres parar la aplicación, puedes usar el comando `make stop`. Este comando parará la aplicación y borrará los contenedores de docker.
+5. Si quieres testear la aplicación, puedes usar el comando `make test`. Este comando ejecutará los tests unitarios.
+6. Si quieres testear la aplicación en modo e2e, puedes usar el comando `make test-e2e`. Este comando ejecutará los tests e2e.
+7. Para ejecutar toda la suite de tets, puedes usar el comando `make test-all`. Este comando ejecutará los tests unitarios y e2e.
+8. Para cualquier duda consulta la ayuda de `make` con el comando `make help`.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# 📧 API
+Dentro de la raiz del proyecto hay un archivo **Nests.postman_collection.json**. Este archivo contiene la colección de postman para probar la API.
 
-## Description
+# 🌳 Estructura
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## src
 
-## Project setup
+Aquí está contenido todo el código de la aplicación. La estructura es la siguiente:
 
-```bash
-$ npm install
+```
+.
+├── Shared
+│   ├── Domain
+│   │   ├── Buses
+│   │   │   ├── EventBus.ts
+│   │   │   └── EventHandler.ts
+│   │   ├── Emails
+│   │   │   └── EmailSender.ts
+│   │   ├── Entities
+│   │   │   └── BaseEntity.ts
+│   │   ├── Events
+│   │   │   └── DomainEvent.ts
+│   │   ├── Providers
+│   │   ├── Utils
+│   │   └── ValueObjects
+│   │       ├── Email.ts
+│   │       └── Uuid.ts
+│   └── Infrastructure
+│       ├── Buses
+│       │   └── InMemoryEventBus.ts
+│       ├── Email
+│       │   └── ConsoleEmailSender.ts
+│       ├── Framework
+│       │   ├── Config
+│       │   │   ├── Emails
+│       │   │   │   └── EmailSenderModule.ts
+│       │   │   └── Events
+│       │   │       └── EventHandlersModule.ts
+│       │   └── Controllers
+│       │       ├── Config
+│       │       │   └── app.module.ts
+│       │       ├── app.controller.ts
+│       │       └── app.service.ts
+│       └── Persistence
+│           └── Repositories
+├── Users
+│   ├── Application
+│   │   ├── Commands
+│   │   │   └── CreateUser
+│   │   │       ├── CreateUserCommand.ts
+│   │   │       └── CreateUserHandler.ts
+│   │   ├── Events
+│   │   │   └── UserCreated
+│   │   │       └── SendMailUserCreatedWelcomeHandler.ts
+│   │   └── Queries
+│   ├── Domain
+│   │   ├── DataSources
+│   │   ├── Entities
+│   │   │   └── User.ts
+│   │   ├── Events
+│   │   │   └── UserCreated.ts
+│   │   ├── Exceptions
+│   │   │   └── UserEmailAlreadyExistsException.ts
+│   │   ├── Repositories
+│   │   │   └── UserRepository.ts
+│   │   └── ValueObjects
+│   │       ├── UserId.ts
+│   │       └── UserName.ts
+│   └── Infrastructure
+│       ├── DataSources
+│       ├── Framework
+│       │   └── Controllers
+│       │       └── Api
+│       │           ├── CreateUser
+│       │           │   ├── CreateUserController.ts
+│       │           │   └── CreateUserDto.ts
+│       │           └── UsersModule.ts
+│       └── Persistence
+│           └── Repositories
+│               ├── InMemoryUserRepository.ts
+│               └── PostgresUserRepository.ts
+└── main.ts
+
 ```
 
-## Compile and run the project
+### Shared 
 
-```bash
-# development
-$ npm run start
+Todo el código que es compartido entre los BC y/o módulos de la aplicación. 
+Aquí se encuentran las interfaces y clases base que son utilizadas por los módulos de la aplicación.
 
-# watch mode
-$ npm run start:dev
+* **Domain**: Aquí se encuentran las interfaces y clases base que van a ser compartidas por el resto de BC a nivel de dominio. Como peculiaridad, he creado en la carpeta de **Buses** dos interfaces solamente para enviar eventos. Uno de ellos es el bus de eventos y el otro es el handler de eventos o también llamado subscriptor.
+  * Buses 
+    * **EventBus**: Interfaz para el bus de eventos con solamente el método ``publish``
+    * **EventHandler**: Interfaz para los handler de eventos.
+  * Emails
+    * **EmailSender**: Interfaz para el envío de emails.
+  * Entities
+    * **BaseEntity**: Clase base para las entidades. Dentro de está hay dos métodos. Uno para ``record`` para registrar los eventos y el otro ``pullDomainEvents`` para recogerlos.
+  * Events
+    * **DomainEvent**: Clase base para los eventos de dominio. Sinceramente me basado un poco (aplicando ligeros cambios), en el diseño que hace CodelyTV en su curso de DDD, porque me parece muy bueno y porque siendo honesto, no tengo tiempo para pensar en un diseño mejor dado mi poco nivel con Typescript.
+* **Infrastructure**: Aquí se encuentran las implementaciones de las interfaces y clases base que van a ser compartidas por el resto de BC a nivel de infraestructura. He creado en la carpeta de **Buses** la implementación del bus de eventos en memoria. No he querido instalar ningún rabbitmq o broker, por falta de tiempo.
 
-# production mode
-$ npm run start:prod
+**Nota**: En la parte de buses, podría haber creado los buses para los comandos y queries, pero no lo he hecho por falta de tiempo. En el caso de que se necesiten, se podrían crear sin problemas. Y en el caso del bus de commandos, añadir la lógica para soportar middlewares.
+
+### Users
+
+Aquí se encuentra el BC de usuarios. Aquí iria contenido toda la lógica de usuarios de la aplicación.
+
+* **Application**: Aquí se encuentran los servicios de aplicación o casos de uso. 
+  * **Commands**: Aquí se encuentran los comandos de la aplicación. En este caso, he creado un comando para crear usuarios.
+  * **Events**: Aquí se encuentran los eventos de la aplicación. En este caso, he creado un evento para enviar el email de bienvenida al usuario.
+  * **Queries**: Está vacio, pero lo he dejado para que se vea la estructura y para dejar constancia de que las operaciones de lectura irían en este lugar.
+* **Domain** : Aquí se encuentra la lógica de dominio. En este caso, he creado la entidad de usuario, el repositorio de usuario y el evento de usuario creado. 
+  * **DataSources**: Está vacio, pero aquí irían todas las interfaces, cuya fuente de datos sea externa. Es de un patrón de diseño que aprendí de Google. Lo usaban para diferenciarse del patrón repository cuya fuente de datos es interna.
+  * **Entities**: Aquí se encuentran las entidades. He creado la entidad de **user**. Con id, name y email.
+    * Aquí me gustaría explicar una cosa. Normalmente, cuando se crea instancia de una entidad de dominio, se le pasa ya sea por constructor o por un constructor semántico los ValueObjects por argumentos si los tuviera. Yo en mi caso prefiero esconder o encapsular esos ValueObject dentro de la entidad de dominio, haciendo el constructor privado. Es decir no quiero exponerlos. En mi experiencia, así luego es más fácil de mantener el código si hay cambios.
+  * **Events**: Aquí se encuentran los eventos. En este caso, he creado el evento de usuario creado **UserCreated**.
+  * **Exceptions**: Solo contiene la excepcion **UserEmailAlreadyExists**.
+  * **Repositories**: Aquí se encuentran los repositorios. **UserRepository** es la única interfaz.
+  * **ValueObjects**: He considerado que por lo menos el id y email, tienen la suficiente entidad como va a encapsular cierta lógica dentro de ellos, por lo que ambos tienen un ValueObject. Para el caso del name, también he creado uno, porque he considerado controlar el límite de cacteres y he preferido que esa lógica estuviera dentro de un ValueObject, en vez del servicio de aplicación, que en mi opinión deben de ser lo más anémicos posibles.
+*  **Infrastructure**: Aquí se encuentra la configuración de framework y todo lo relacionado a nivel infraestructura con el BC. 
+  * **DataSources**: Está vacio, pero aquí irían todas las implementaciones de las interfaces de la carpeta de **DataSources** con fuentes de datos externas.
+  * **Framework**: Aquí se encuentra el framework de la aplicación. En nuestro caso la parte de controllers y un **UsersModule** para inyectar servicios.
+  * **Persistence**: Aquí se encuentran las implementaciones de los repositorios. He creado dos, uno en memoria y otro para postgres.
+
+**Nota:** En la parte de **UsersModule**, para ser honesto desconozco si lo que hice es lo mejor o la mejor forma de hacerlo. Es mi primera vez con Nestjs, y me ha costado entender como funcionaba el contenedor de inyección de dependencias.
+
+# 🧪 Testing
+
+He intentado estructurar la pruebas en tests EndToEnd y Unitarios. Dada mi nula experiencia con Nestjs y Typescript, he decidido no implementar pruebas de integración.
+He creado varios ObjectsMother para crear los objetos de prueba de:
+* **CreateUserCommand**
+* **User**
+* **UserCreated**
+
+**Nota:** Como no sabía como mockear una interfaz en typescript, he decidido crear una implementación mock de la interfaz que no hace nada. En este caso, es el MockEventBus y el MockUserRepository. A nivel interno no tienen mucha chicha, pero me han servido para testear el caso de uso como yo quería.
+## 🌴 Estructura
+```├── Units
+│   ├── Shared
+│   │   ├── Domain
+│   │   │   └── ValueObjects
+│   │   │       └── Email.spec.ts
+│   │   └── Infrastructure
+│   │       └── Buses
+│   │           └── MockEventBus.ts
+│   └── Users
+│       ├── Application
+│       │   └── Commands
+│       │       └── CreateUser
+│       │           ├── CreateUserCommandMother.ts
+│       │           └── CreateUserHandler.spec.ts
+│       ├── Domain
+│       │   ├── Entities
+│       │   │   └── UserMother.ts
+│       │   ├── Events
+│       │   │   └── UserCreatedMother.ts
+│       │   └── ValueObjects
+│       │       └── UserName.spec.ts
+│       └── Infrastructure
+│           ├── Framework
+│           │   └── Controllers
+│           │       └── Api
+│           │           └── CreateUser
+│           │               └── CreateUserController.spec.ts
+│           └── Persistence
+│               └── Repositories
+│                   └── MockUserRepository.ts
+├── e2e
+│   └── Users
+│       └── Infrastructure
+│           └── Framework
+│               └── Controllers
+│                   └── Api
+│                       └── CreateUser
+│                           └── CreateUserController.e2e-spec.ts
+└── jest-e2e.json
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-
-
-Cositas: 
-
-
-Notas:
-- No he podido usar UserRepository como interfaz, porque Typescript no es capaz en tiempo de compilación de averiguar sus implementaciones. Por lo que he tenido que pasarlo a una clase abstracta, y evitar el uso de Injetable() recomendado por el framework, cosa que quiero evitar por todos los medios.

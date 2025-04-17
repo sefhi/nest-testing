@@ -4,7 +4,7 @@ import { CreateUserHandler } from '../../../../Application/Commands/CreateUser/C
 import { USER_REPOSITORY } from '../../../../Domain/Repositories/UserRepository';
 import { PostgresUserRepository } from '../../../Persistence/Repositories/PostgresUserRepository';
 import { Pool } from 'pg';
-import { EventHandlersModule } from '../../../../../Shared/Infrastruture/Framework/Config/Events/EventHandlersModule';
+import { EventHandlersModule } from '../../../../../Shared/Infrastructure/Framework/Config/Events/EventHandlersModule';
 
 @Module({
   imports: [EventHandlersModule],

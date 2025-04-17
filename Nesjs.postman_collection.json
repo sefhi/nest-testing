@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "8f9d5772-d8f1-45ff-b02e-d0d7d056fe94",
+		"name": "Nesjs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "861953",
+		"_collection_link": "https://crimson-crater-3768.postman.co/workspace/My-Workspace~7f6e25c0-f863-44cb-8f5b-90cb6d508797/collection/861953-8f9d5772-d8f1-45ff-b02e-d0d7d056fe94?action=share&source=collection_link&creator=861953"
+	},
+	"item": [
+		{
+			"name": "users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"{{$randomUUID}}\",\n    \"name\": \"{{$randomUserName}}\",\n    \"email\": \"{{$randomEmail}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users with email already exist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"{{$randomUUID}}\",\n    \"name\": \"{{$randomUserName}}\",\n    \"email\": \"example@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -10,3 +10,5 @@ CREATE TABLE IF NOT EXISTS "user" (
 -- Indexes
 CREATE INDEX IF NOT EXISTS idx_user_email ON "user" (email);
 CREATE INDEX IF NOT EXISTS idx_user_name ON "user" (name);
+
+INSERT INTO "user" (id, email, name) VALUES (uuid_generate_v4(), 'duplicateemail@example.com', 'Example Example');
