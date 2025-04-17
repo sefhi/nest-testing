@@ -5,13 +5,16 @@ import * as request from 'supertest';
 import { App } from 'supertest/types';
 import { Uuid } from '../../../../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
-describe('Create User Controller (e2e)', () => {
+describe('CreateUserController (e2e)', () => {
   let app: INestApplication<App>;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      /*.overrideProvider(USER_REPOSITORY)
+      .useValue(inMemoryUserRepository)*/
+      .compile();
 
     app = moduleFixture.createNestApplication();
     app.useGlobalPipes(
@@ -27,7 +30,7 @@ describe('Create User Controller (e2e)', () => {
   it('should create user with http status 201', () => {
     const payload = {
       id: Uuid.generate().toString(),
-      email: 'test@example.com',
+      email: `test-${Uuid.generate().toString().slice(0, 8)}@example.com`,
       name: 'John Doe',
     };
 
