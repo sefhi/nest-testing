@@ -4,13 +4,16 @@ import {
   DomainEventClass,
 } from '../../../../Shared/Domain/Events/DomainEvent';
 import { UserCreated } from '../../../Domain/Events/UserCreated';
-import { EMAIL_SENDER, EmailSender } from '../../../../Shared/Domain/Emails/EmailSender';
+import {
+  EMAIL_SENDER,
+  EmailSender,
+} from '../../../../Shared/Domain/Emails/EmailSender';
 import { Inject } from '@nestjs/common';
 
 export class SendMailUserCreatedWelcomeHandler implements EventHandler {
   constructor(
     @Inject(EMAIL_SENDER)
-    private readonly emailSender: EmailSender
+    private readonly emailSender: EmailSender,
   ) {}
 
   async handle(event: DomainEvent): Promise<void> {

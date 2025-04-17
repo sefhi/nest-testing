@@ -34,6 +34,9 @@ test-e2e:
 test-cov:
 	$(DOCKER_COMPOSE) exec app npm run test:cov
 
+style:
+	$(DOCKER_COMPOSE) exec app npm run lint
+
 help:
 	@echo "Comandos disponibles:"
 	@echo "  make build     - Construir imagen"

@@ -27,7 +27,7 @@ export class CreateUserHandler {
   private async ensureUserByEmailNotExist(email: Email) {
     const user = await this.repository.findByEmail(email.toString());
     if (user !== null) {
-      throw new Error(`User with email ${email} already exists`);
+      throw new Error(`User with email ${email.toString()} already exists`);
     }
   }
 }

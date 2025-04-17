@@ -52,7 +52,7 @@ describe('CreateUserController (e2e)', () => {
       .send(payload)
       .expect(HttpStatus.BAD_REQUEST)
       .expect((res) => {
-        expect(res.body.message).toEqual(['invalid email format']);
+        expect(res.body).toEqual({ message: ['invalid email format'] });
       });
   });
 });

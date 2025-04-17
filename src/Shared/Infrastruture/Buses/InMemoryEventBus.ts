@@ -1,5 +1,5 @@
 import { EventBus } from '../../Domain/Buses/EventBus';
-import { DomainEvent } from '../../Domain/Events/DomainEvent';
+import { DomainEvent, DomainEventClass } from '../../Domain/Events/DomainEvent';
 import { EventHandler } from '../../Domain/Buses/EventHandler';
 
 export class InMemoryEventBus implements EventBus {
@@ -50,7 +50,7 @@ export class InMemoryEventBus implements EventBus {
   }
 
   private getEventName(event: DomainEvent): string {
-    const eventClass = event.constructor as any;
+    const eventClass = event.constructor as unknown as DomainEventClass;
     return eventClass.EVENT_NAME;
   }
 }

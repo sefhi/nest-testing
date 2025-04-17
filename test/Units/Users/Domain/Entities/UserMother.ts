@@ -1,6 +1,5 @@
 import { User } from '../../../../../src/Users/Domain/Entities/User';
 import { CreateUserCommand } from '../../../../../src/Users/Application/Commands/CreateUser/CreateUserCommand';
-import { v7 as uuidv7 } from 'uuid';
 import { Uuid } from '../../../../../src/Shared/Domain/ValueObjects/Uuid';
 
 type UserParams = {

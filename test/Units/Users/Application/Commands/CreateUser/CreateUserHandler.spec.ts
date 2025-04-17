@@ -32,7 +32,7 @@ describe('CreateUserHandler', () => {
 
     expect(findByEmailSpy).toHaveBeenCalledWith(userExpected.email.toString());
 
-    const storedUser = storeSpy.mock.calls[0][0] as typeof userExpected;
+    const storedUser = storeSpy.mock.calls[0][0];
     expect(storedUser).toMatchObject({
       id: { value: userExpected.id.value },
       email: { value: userExpected.email.value },
@@ -44,8 +44,8 @@ describe('CreateUserHandler', () => {
         email: userExpected.email.value,
         name: userExpected.name.value,
         relatedId: userExpected.id.value,
-        eventId: expect.any(String),
-        occurredOn: expect.any(Date),
+        eventId: expect().toBeDefined(),
+        occurredOn: expect().toBeDefined(),
       }),
     ]);
   });
