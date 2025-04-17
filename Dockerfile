@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 # Primera ejecución: solo copiamos package.json para instalar dependencias
 COPY package.json ./
 RUN npm install
+RUN npm install -g @nestjs/cli
 
 # Copiamos el resto de archivos
 COPY . .

@@ -3,10 +3,18 @@
 # Variables
 DOCKER_COMPOSE = docker compose
 
+.DEFAULT_GOAL := deploy
+
+deploy: build
+
 build:
+	@echo "📦 Building"
 	$(DOCKER_COMPOSE) build
+	make start
+	make install
 
 start:
+	@echo "🚀 Deploy!!!"
 	$(DOCKER_COMPOSE) up -d
 
 stop:
@@ -22,6 +30,7 @@ logs:
 	$(DOCKER_COMPOSE) logs -f
 
 install:
+	@echo "📦 Installing dependencies"
 	$(DOCKER_COMPOSE) exec app npm install
 
 test-all: test test-e2e

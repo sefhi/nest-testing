@@ -1,13 +1,14 @@
 # ⚙️ Configuración del entorno
 
 1. Clona el repositorio o haz un fork
-2. Escribe por terminal el comando `make start`. Este comando instalará todo lo necesario para arrancar la aplicación.
+2. Escribe por terminal el comando `make`. Este comando instalará todo lo necesario para arrancar la aplicación.
 3. La api está disponible en la url http://localhost:3000
 4. Si quieres parar la aplicación, puedes usar el comando `make stop`. Este comando parará la aplicación y borrará los contenedores de docker.
-5. Si quieres testear la aplicación, puedes usar el comando `make test`. Este comando ejecutará los tests unitarios.
-6. Si quieres testear la aplicación en modo e2e, puedes usar el comando `make test-e2e`. Este comando ejecutará los tests e2e.
-7. Para ejecutar toda la suite de tets, puedes usar el comando `make test-all`. Este comando ejecutará los tests unitarios y e2e.
-8. Para cualquier duda consulta la ayuda de `make` con el comando `make help`.
+5. Si quieres arrancar la aplicación, puedes usar el comando `make start`. Este comando arrancará la aplicación y creará los contenedores de docker.
+6. Si quieres testear la aplicación, puedes usar el comando `make test`. Este comando ejecutará los tests unitarios.
+7. Si quieres testear la aplicación en modo e2e, puedes usar el comando `make test-e2e`. Este comando ejecutará los tests e2e.
+8. Para ejecutar toda la suite de tets, puedes usar el comando `make test-all`. Este comando ejecutará los tests unitarios y e2e.
+9. Para cualquier duda consulta la ayuda de `make` con el comando `make help`.
 
 # 📧 API
 Dentro de la raiz del proyecto hay un archivo **Nests.postman_collection.json**. Este archivo contiene la colección de postman para probar la API.
