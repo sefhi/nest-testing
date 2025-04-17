@@ -17,11 +17,11 @@ export class PostgresUserRepository implements UserRepository {
       VALUES ($1, $2, $3)
     `;
     //TODO implement logic update
-    /*await this.pool.query(query, [
+    await this.pool.query(query, [
       user.id.value,
       user.email.value,
       user.name.value,
-    ]); */
+    ]);
     return Promise.resolve(undefined);
   }
   async findByEmail(email: string): Promise<User | null> {

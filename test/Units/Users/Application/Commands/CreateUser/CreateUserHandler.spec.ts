@@ -3,9 +3,6 @@ import { MockUserRepository } from '../../../Infrastructure/Persistence/Reposito
 import { CreateUserCommandMother } from './CreateUserCommandMother';
 import { UserMother } from '../../../Domain/Entities/UserMother';
 import { MockEventBus } from '../../../../Shared/Infrastructure/Buses/MockEventBus';
-import { UserCreated } from '../../../../../../src/Users/Domain/Events/UserCreated';
-import { UserCreatedMother } from '../../../Domain/Events/UserCreatedMother';
-import { User } from '../../../../../../src/Users/Domain/Entities/User';
 
 describe('CreateUserHandler', () => {
   let repository: MockUserRepository;
@@ -22,6 +19,9 @@ describe('CreateUserHandler', () => {
     const userExpected = UserMother.fromCommand(command);
     const storeSpy = jest.spyOn(repository, 'store');
     const eventBusSpy = jest.spyOn(eventBus, 'publish');
+    const findByEmailSpy = jest
+      .spyOn(repository, 'findByEmail')
+      .mockResolvedValue(null);
 
     // WHEN
     const handler = new CreateUserHandler(repository, eventBus);
@@ -29,6 +29,8 @@ describe('CreateUserHandler', () => {
 
     // THEN
     expect(handler).toBeDefined();
+
+    expect(findByEmailSpy).toHaveBeenCalledWith(userExpected.email.toString());
 
     const storedUser = storeSpy.mock.calls[0][0] as typeof userExpected;
     expect(storedUser).toMatchObject({

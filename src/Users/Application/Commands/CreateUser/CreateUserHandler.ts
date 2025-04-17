@@ -4,6 +4,7 @@ import { User } from '../../../Domain/Entities/User';
 import { Inject } from '@nestjs/common';
 import { USER_REPOSITORY } from '../../../Domain/Repositories/UserRepository';
 import { EVENT_BUS, EventBus } from '../../../../Shared/Domain/Buses/EventBus';
+import { Email } from '../../../../Shared/Domain/ValueObjects/Email';
 
 export class CreateUserHandler {
   constructor(
@@ -16,8 +17,17 @@ export class CreateUserHandler {
   async handle(command: CreateUserCommand) {
     const user = User.create(command.id, command.email, command.name);
 
+    await this.ensureUserByEmailNotExist(user.email);
+
     await this.repository.store(user);
 
     await this.eventBus.publish(user.pullDomainEvents());
+  }
+
+  private async ensureUserByEmailNotExist(email: Email) {
+    const user = await this.repository.findByEmail(email.toString());
+    if (user !== null) {
+      throw new Error(`User with email ${email} already exists`);
+    }
   }
 }
